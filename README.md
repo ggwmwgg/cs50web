@@ -18,14 +18,14 @@ You can see the technologies used inside the README.md of each project
   <summary>Week 3 (Django)</summary>
   <blockquote>Create Wiki like site (create and watch entries, markdown)</blockquote>
   <ul>
-	<li><a href="https://github.com/ggwmwgg/cs50/tree/main/wiki" target="_blank">Wiki</a></li>
+	<li><a href="https://github.com/ggwmwgg/cs50web/tree/main/wiki" target="_blank">Wiki</a></li>
   </ul>  
 </details>
 <details>
   <summary>Week 4 (SQL, Models, and Migrations)</summary>
   <blockquote>Create Ebay like site (bids, watchlist, listings)</blockquote>
   <ul>
-	<li><a href="https://github.com/ggwmwgg/cs50/tree/main/commerce" target="_blank">Commerce</a></li>
+	<li><a href="https://github.com/ggwmwgg/cs50web/tree/main/commerce" target="_blank">Commerce</a></li>
   </ul>  
 </details>
 <details>
