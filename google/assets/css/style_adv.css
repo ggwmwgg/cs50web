@@ -1,0 +1,30 @@
+
+* {
+	font-family: arial,sans-serif;
+	font-size: 13px;
+}
+
+#forma {
+	min-width: 167px !important;
+    min-height: 30px !important;
+}
+
+#texta {
+    min-height: 30px !important;
+}
+
+.muteda {
+	font-size: 11px;
+}
+
+.form-control:focus {
+  border-color: #007bff !important;
+}
+
+
+
+main {
+  min-height: 100vh;
+}
+
+

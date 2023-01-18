@@ -1,0 +1,19 @@
+body {
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.bdge {
+  height: 21px;
+  background-color: orange;
+  color: #fff;
+  font-size: 11px;
+  padding: 8px;
+  border-radius: 4px;
+  line-height: 3px;
+}
+
+.comments {
+  text-decoration: underline;
+  text-underline-position: under;
+  cursor: pointer;
+}

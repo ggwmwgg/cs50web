@@ -1,0 +1,32 @@
+{% extends "auctions/layout.html" %}
+
+{% block active_categories %}active{% endblock %}
+
+{% block body %}
+    {% if alert_message %}
+        <div class="container" style="max-width: 900px">
+            <div class="alert {{ alert_type }} alert-dismissible" style="max-width: 900px;">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ alert_message }}</strong>
+            </div>
+        </div>
+    {% endif %}
+    <h2 class="text-center mb-3">Categories</h2>
+    <div class="mx-auto mb-5 width-kek" style="max-width: 500px">
+        <div class="card" >
+            <div class="card-header text-center">
+                Click on category to view its auctions
+            </div>
+        <ul class="list-group list-group-flush">
+            {% for category in categories %}
+                <li class="list-group-item text-center" style="padding-top: 25px;"><p><a href="{% url 'category' category_id=category.id %}" class="text-dark font-weight-bold">{{ category.name }}</a></p></li>
+            {% endfor %}
+
+        </ul>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

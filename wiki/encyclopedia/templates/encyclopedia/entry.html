@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">{% load m_f %}</div>
+            <div class="col" style="padding-top: 27px; padding-left: 195px; position: absolute">
+                <form action="{% url 'edit' title %}">
+                    <button type="submit" class="btn btn-primary aligned-">Edit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{ content|md_to_html|safe }}
+
+{% endblock %}

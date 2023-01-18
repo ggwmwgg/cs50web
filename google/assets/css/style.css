@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+/* Assign full width inputs
+input[type=text], 
+input[type=password] { 
+	width: 100%; 
+	padding: 12px 40px; 
+	margin: 8px 0; 
+	display: inline-block; 
+	border: 1px solid #ccc; 
+	box-sizing: border-box; 
+} */ 
+  
+/* Set a style for the buttons
+button { 
+	background-color: #4CAF50; 
+	color: white; 
+	padding: 14px 20px; 
+	margin: 8px 0; 
+	border: none; 
+	cursor: pointer; 
+	width: 100%; 
+} */ 
+
+/* Set a hover effect for the button
+button:hover { 
+	opacity: 0.8; 
+} 
+*/ 
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#searchfield {
+	background-color: white;
+}
+
+#formfield {
+	max-width: 650px;
+	min-width: 301px;
+}
+
+#containir {
+	min-width: 389px;
+
+}
+
+
+#kokir:hover,
+#kokir:focus {
+	box-shadow: 0 1px 6px rgba(32,33,36,.28);
+	border-color: rgba(223,225,229,0);
+	border-radius: 2rem;
+}
+
+.form-control:focus {
+	box-shadow: 0 1px 6px rgba(32,33,36,.28);
+	border-color: rgba(223,225,229,0);
+	border-radius: 2rem;
+}
+	
+.search-icon {
+    border-right: 0;
+}
+
+.search-input {
+    border-left:0 solid transparent;
+    background:transparent;
+	
+}
+
+#q:focus + #kokir {
+	box-shadow: 0 1px 6px rgba(32,33,36,.28);
+	border-color: rgba(223,225,229,0);
+	border-radius: 2rem;
+}
+
+#q:focus {
+	box-shadow: 0 1px 6px rgba(32,33,36,.28);
+	border-color: rgba(223,225,229,0);
+	
+}
+
+.ps-6 {
+  padding-left: 26% !important;
+  padding-top: 10% !important; 
+}
+
+* {
+	font-family: arial,sans-serif;
+	font-size: 13px;
+}
+
+
+
+.search{
+	position: relative;
+	box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+ 
+}
+
+.search input{
+
+	height: 60px;
+	text-indent: 25px;
+	border: 2px solid #d6d4d4;
+
+
+}
+
+
+.search input:focus{
+
+	box-shadow: none;
+	border: 2px solid blue;
+
+
+}
+
+.search .fa-search{
+
+	position: absolute;
+	top: 20px;
+	left: 16px;
+
+}
+
+.search button{
+
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	height: 50px;
+	width: 110px;
+	background: blue;
+
+}
