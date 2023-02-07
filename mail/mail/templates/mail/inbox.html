@@ -1,0 +1,174 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" target="_blank">
+                <img src="{% static 'mail/git.svg' %}" width="25" height="25" class="d-inline-block align-top fab fa-github fa-fw fa-2x fa-beat-fade" alt="">
+                Mail
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#" id="inbox">Inbox</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="sent">Sent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="archived">Archived</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-sender="{{ request.user.email }}">Compose</a>
+
+                    </li>
+                </ul>
+                <div class="d-flex" role="search">
+                    <a class="nav-item nav-link pe-4 pt-2" ><strong id="email">{{ request.user.email }}</strong></a>
+
+                    <a class="nav-link"><a class="btn btn-outline-danger" href="{% url 'logout' %}" role="button">Logout</a></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<div class="container border rounded mt-5 pt-1" style="max-width: 95%;" id="whole-container">
+    <!-- Emails list div -->
+    <div class="list-group pb-4 d-none" id="emails-view">
+    </div>
+
+    <!-- Email content div -->
+    <div class="card d-none" id="email-content-view">
+        <div class="card-footer text-muted bg-light py-2" id="email-content-buttons">
+            <span class="icon-container">
+                <i class="fa-solid fa-arrow-left" id="email-content-back"></i>
+            </span>
+            <span class="icon-container d-none" id="email-content-archive">
+                <i class="fa-solid fa-box" data-toggle="tooltip" data-placement="top" title="Archive"></i></button>
+            </span>
+            <span class="icon-container d-none" id="email-content-unarchive">
+                <i class="fa-solid fa-box-open" data-toggle="tooltip" data-placement="top" title="Unarchive"></i></button>
+            </span>
+            <span class="icon-container d-none" id="email-content-unread">
+                <i class="fa-solid fa-envelope" data-toggle="tooltip" data-placement="top" title="Mark as unread"></i>
+            </span>
+            <span class="icon-container d-none" id="email-content-read">
+                <i class="fa-solid fa-envelope-open" data-toggle="tooltip" data-placement="top" title="Mark as read"></i>
+            </span>
+            <span class="icon-container d-none" id="email-content-id">10</span>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><i><b id="email-content-subject"></b></i></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">From: <strong id="email-content-sender"></strong>.</li>
+            <li class="list-group-item">To: <strong id="email-content-recipient"></strong>.</li>
+            <li class="list-group-item">At: <strong id="email-content-date"></strong>.</li>
+        </ul>
+        <div class="card-body">
+            <h5 class="card-title text-center fs-6 fst-italic">Message</h5>
+            <p class="card-text" id="email-content-body"></p>
+            <div style="display: none;" id="replySlider">
+                <div class="pt-3"></div>
+                <hr/>
+                <ul class="list-group list-group-flush pt-3">
+                    <li class="list-group-item">
+                        <form>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="replyFromLabel">From:</span>
+                                            <input type="text" class="form-control" id="replyFrom" aria-label="" aria-describedby="replyFromLabel" disabled readonly>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="replyToLabel">To:</span>
+                                            <input type="text" class="form-control" id="replyTo" aria-label="" aria-describedby="replyToLabel" disabled readonly>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="replySubjectLabel">Subject:</span>
+                                    <input type="text" class="form-control" id="replySubject" aria-label="" aria-describedby="replySubjectLabel" disabled readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <textarea class="form-control" id="replyMessage"></textarea>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="card-footer text-muted py-2 d-flex justify-content-end">
+            <button class="btn btn-primary mx-2 d-none" data-sender="{{ request.user.email }}" id="email-content-reply"><i class="fa-solid fa-reply"></i> Reply</button>
+            <button class="btn btn-secondary mx-2 d-none" data-sender="{{ request.user.email }}" id="email-content-send-close"><i class="fa-regular fa-circle-xmark"></i> Close</button>
+            <button class="btn btn-primary mx-2 d-none" data-sender="{{ request.user.email }}" id="email-content-send">Send <i class="fa-regular fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<!-- Send message modal div -->
+<div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">From:</label>
+                        <input type="text" class="form-control disabled" id="recipient-name" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-to" class="col-form-label" >To:</label>
+                        <input type="text" class="form-control mb-2" id="message-to">
+                        <input type="text" class="form-control mb-2" placeholder="Subject" id="message-subject">
+                        <textarea class="form-control mb-2" placeholder="Body" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="Submit" class="btn btn-outline-primary" id="submitBtn">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alerts div -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="alertContainer">
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+    <script src="https://kit.fontawesome.com/753c689e0f.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+{% endblock %}

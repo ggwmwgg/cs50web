@@ -29,21 +29,21 @@ You can see the technologies used inside the README.md of each project
   </ul>  
 </details>
 <details>
-  <summary>Week 5-6 (Javascript, UI) (TO DO)</summary>
+  <summary>Week 5-6 (Javascript, UI)</summary>
   <blockquote>Create Mail website</blockquote>
   <ul>
 	<li><a href="https://github.com/ggwmwgg/cs50web/tree/main/mail" target="_blank">Mail</a></li>
   </ul>  
 </details>
 <details>
-  <summary>Week 7 (Testing, CI/CD) (TO DO)</summary>
+  <summary>Week 7 (Testing, CI/CD)</summary>
   <blockquote>Create Twitter like website</blockquote>
   <ul>
 	<li><a href="https://github.com/ggwmwgg/cs50web/tree/main/twitter" target="_blank">Twitter</a></li>
   </ul>  
 </details>
 <details>
-  <summary>My CS50 Web Development course Final Project (TO DO)</summary>
+  <summary>My CS50 Web Development course Final Project</summary>
   <blockquote>TO DO</blockquote>
   <ul>
 	<li><a href="https://github.com/ggwmwgg/cs50web/tree/main/cs50web_final" target="_blank">Final Project</a></li>

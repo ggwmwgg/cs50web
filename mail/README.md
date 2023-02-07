@@ -1,7 +1,7 @@
 ## Mail (from CS50W course)
 
 ### Description
-Website with front-end for an email client that makes API calls to send and receive emails.
+Website with front-end for an email client that makes (simulated) API calls to send and receive emails.
 
 #### Technologies used:
 - *Python*
