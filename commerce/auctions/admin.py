@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import User, Category, Listing, Bid, Comment, Watchlist
 
-# Register your models here.
+
 class UserAdmin(admin.ModelAdmin):
     list_display = ("id", "username", "email", "first_name", "last_name", "is_staff", "is_superuser", "last_login",)
     fieldsets = (
@@ -20,6 +20,7 @@ class UserAdmin(admin.ModelAdmin):
     )
     list_editable = ("is_staff", "is_superuser",)
 
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("id", "name")
     list_editable = ("name",)
@@ -30,6 +31,7 @@ class CategoryAdmin(admin.ModelAdmin):
             "fields": ("name", )
         }),
     )
+
 
 class ListingAdmin(admin.ModelAdmin):
     list_display = ("id", "title", "user", "starting_bid", "current_bid", "is_active", "date")
@@ -51,11 +53,13 @@ class ListingAdmin(admin.ModelAdmin):
     readonly_fields = ("current_bid", "date",)
     ordering = ('id',)
 
+
 class BidAdmin(admin.ModelAdmin):
     list_display = ("id", "bid", "user", "listing", "date")
     list_filter = ("user", "listing")
     ordering = ('listing', '-bid')
     search_fields = ('user',)
+
 
 class CommentAdmin(admin.ModelAdmin):
     list_display_links = ("id",)
@@ -63,6 +67,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_editable = ("comment",)
     list_filter = ("user", "listing")
     ordering = ('id',)
+
 
 class WatchlistAdmin(admin.ModelAdmin): # TO DO
     list_display = ("user", "listings_string")
@@ -78,6 +83,7 @@ class WatchlistAdmin(admin.ModelAdmin): # TO DO
             "fields": ("listing",)
         }),
     )
+
     def listings_string(self, obj):
         return ", ".join([str(f"{item.id}|{item.title}|{item.user}") for item in obj.listing.all()])
     listings_string.short_description = "Listings"

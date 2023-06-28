@@ -1,0 +1,32 @@
+version: '3'
+services:
+  mail:
+    build: .
+    env_file: db.env
+    container_name: mail
+
+    volumes:
+      - .:/mail
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    entrypoint: /mail/entry.sh
+  db:
+    image: postgres
+    restart: always
+    env_file: db.env
+    container_name: db
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "db_user", "-d", "db_name"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - database:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+    database:

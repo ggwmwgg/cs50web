@@ -1,4 +1,4 @@
-## Commerce (from CS50W course)
+## Commerce (from CS50W course | Updated)
 
 ### Description
 An eBay-like e-commerce auction site where users are able to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist.”
@@ -9,15 +9,30 @@ An eBay-like e-commerce auction site where users are able to post auction listin
 - *SQL*
 - *HTML*
 - *CSS*
+- *Docker*
 
-#### Configuring:
+#### Configuring(PC):
 - Install ```requirements.txt```.
 - Run ```python manage.py makemigrations``` to make migrations for the commerce app.
+- Connect to your own PostgreSQL database in ```settings.py``` (by default it set to be working with docker).
 - Apply migrations to db ```python manage.py migrate```
 - Create a superuser using ```python manage.py createsuperuser``` to visit ```/admin``` page in future 
 - Run ```python manage.py runserver 8080``` in ```/``` directory.
 - Visit ```http://127.0.0.1:8000/```.
 
+#### Docker (NEW):
+- Install docker and docker-compose.
+- Change database, user, password to your own in ```db.env``` and ```docker-compose.yml``` files.
+- Build containers using ```docker-compose build```.
+- Run containers using ```docker-compose up```, you can add ```-d``` flag to run in background.
+- When containers are running, commands for tests and migrations are already applied (```entry.sh```).
+- To enter bash use ```docker exec -it <container_name> bash```.
+- To enter db container use ```docker exec -it db psql -U <db_user>```.
+- To enter django console use ```docker exec -it commerce python manage.py shell```.
+- Stop containers using ```docker-compose down```.
+
+#### Tests (NEW):
+- TO DO
 
 #### Implementations:
 - Models:
@@ -52,6 +67,15 @@ An eBay-like e-commerce auction site where users are able to post auction listin
 
 - Django Admin Interface:
 	- Via the Django admin interface, a site administrator (creation in Usage) is able to view, add, edit, and delete any listings, comments, and bids made on the site.
-	
+
+- New:
+  	- Standard database replaced with PostgreSQL.
+    - Docker and docker-compose added.
+    - Tests added. (TO DO)
+    - ```entry.sh``` added for migrations and tests.
+    - ```db.env``` added for database configuration.
+    - ```docker-compose.yml``` added for docker configuration.
+    - ```Dockerfile``` added for docker configuration.
+
 #### Contributing
-Pull requests are welcome. For major changes please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For major changes please open an issue first.

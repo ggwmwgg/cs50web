@@ -1,29 +1,29 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .text {
-  white-space: nowrap;
+    white-space: nowrap;
 }
 
 .d-none {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .d-block {
-  opacity: 1;
+    opacity: 1;
 }
 
 
 .icon-container {
-  display: inline-block;
-  height: 25px;
-  width: 25px;
-  text-align: center;
-  vertical-align: middle;
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    vertical-align: middle;
 
-  margin-right: 3%;
+    margin-right: 3%;
 
 }
 
@@ -32,11 +32,11 @@ body {
 .fa-arrow-left,
 .fa-envelope-open,
 .fa-envelope {
-  position: relative;
-  display: inline-block;
-  font-size: 100%;
-  color: rgba(21, 21, 21, 0.55);
-  transition: all 0.3s ease-in-out;
+    position: relative;
+    display: inline-block;
+    font-size: 100%;
+    color: rgba(21, 21, 21, 0.55);
+    transition: all 0.3s ease-in-out;
 
 
 }
@@ -46,13 +46,13 @@ body {
 .fa-arrow-left:hover,
 .fa-envelope-open:hover,
 .fa-envelope:hover {
-  font-size: 110%;
-  color: rgba(0, 0, 0, 0.75);
-  transform: scale(1.1);
+    font-size: 110%;
+    color: rgba(0, 0, 0, 0.75);
+    transform: scale(1.1);
 }
 
 #email-content-view.collapse {
-  transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .tooltip-inner {
@@ -64,10 +64,10 @@ body {
 }
 
 #replyMessage {
-  overflow-y: hidden;
-  resize: none;
-  min-height: 300px; /* set the minimum height */
-  max-height: none; /* remove the maximum height */
-  /* Dynamically set the height based on the content */
-  height: auto;
+    overflow-y: hidden;
+    resize: none;
+    min-height: 300px; /* set the minimum height */
+    max-height: none; /* remove the maximum height */
+    /* Dynamically set the height based on the content */
+    height: auto;
 }

@@ -2,11 +2,10 @@ from django import forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
 from .models import User, Category, Listing, Bid, Comment, Watchlist
-
 
 
 class NewListingForm(forms.Form):
@@ -37,25 +36,13 @@ class NewListingForm(forms.Form):
         required=False
     )
 
+
 class AddCommentForm(forms.Form):
     comment = forms.CharField(
         label="Comment",
         widget=forms.Textarea(
             attrs={'rows': 5, 'class': "form-control", 'placeholder': "Leave a comment...", "style": "height: 50px;"})
     )
-
-# class AddBidForm(forms.Form):
-#     bid = forms.DecimalField(
-#         label="Bid",
-#         widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter bid', "style": "display:inline-block;", "step": "0.1"}),
-#         # getting last bid from bids to that listing and setting it as min value
-#         #min_value=Listing.objects.last().bids.last().bid
-#         # setting min value to listing starting bid from listing id in url
-#         min_value=Listing.objects.get(id=listing_id).starting_bid
-#     )
-
-
-
 
 
 def index(request):
@@ -150,7 +137,6 @@ def create(request):
             listing = Listing(title=title, description=description, starting_bid=starting_bid, image_url=image_url,
                               category=category, user=user)
             listing.save()
-            #return HttpResponseRedirect(reverse("listing", args=(listing.id,)))
             alert_type = "alert-success"
             alert_message = "Listing created successfully!"
             return HttpResponseRedirect(reverse("listing", args=(listing.id,)) + "?alert_message=" + alert_message + "&alert_type=" + alert_type)
@@ -159,13 +145,13 @@ def create(request):
 
     return render(request, "auctions/create.html", {'form': form})
 
+
 def listing(request, listing_id):
     alert_type = "alert-danger"
     alert_message = "Listing not found."
 
     try:
         listing = Listing.objects.get(id=listing_id)
-
     except Listing.DoesNotExist:
         return HttpResponseRedirect(reverse("index") + "?alert_message=" + alert_message + "&alert_type=" + alert_type)
     # Updating listing current bid from last bid for that listing in bids
@@ -206,6 +192,7 @@ def listing(request, listing_id):
         min_value = bids.last().bid
     else:
         min_value = listing.starting_bid
+
     class AddBidForm(forms.Form):
         bid = forms.DecimalField(
             label="Bid",
@@ -247,6 +234,7 @@ def listing(request, listing_id):
         "won": won
     })
 
+
 @login_required(login_url='/login')
 def close(request, listing_id):
     try:
@@ -271,6 +259,7 @@ def close(request, listing_id):
     else:
         return HttpResponseRedirect(reverse("index"))
 
+
 @login_required(login_url='/login')
 def add_comment(request, listing_id):
     try:
@@ -293,6 +282,7 @@ def add_comment(request, listing_id):
     else:
         return HttpResponseRedirect(reverse("index"))
 
+
 @login_required(login_url='/login')
 def watchlist(request):
     user = request.user
@@ -313,8 +303,6 @@ def watchlist(request):
                 watch_list = Watchlist(user=user)
                 watch_list.save()
             wl_listings = watch_list.listing.all()
-            alert_type = ""
-            alert_message = ""
 
             if action_list == "r":
                 if listing in wl_listings:
@@ -389,6 +377,7 @@ def add_bid(request, listing_id):
             min_value = bids.last().bid
         else:
             min_value = listing.starting_bid
+
         class AddBidForm(forms.Form):
             bid = forms.DecimalField(
                 label="Bid",
@@ -431,11 +420,13 @@ def add_bid(request, listing_id):
     else:
         return HttpResponseRedirect(reverse("listing", args=(listing.id,)))
 
+
 def categories(request):
     categories = Category.objects.all()
     return render(request, "auctions/categories.html", {
         "categories": categories
     })
+
 
 def category(request, category_id):
     try:

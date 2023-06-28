@@ -1,0 +1,212 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="d-block" id="all_posts_view" data-user-id="{{ request.user.id }}">
+    {% if user.is_authenticated %}
+        <div class="row" style="padding-top: 70px;">
+            <div class="col-1 d-flex justify-content-center align-items-start mt-1">
+                <img src="
+                {% if request.user.url %}
+                    {{ request.user.url }}
+                {% else %}
+                    {% static 'network/user.png' %}
+                {% endif %}
+                " alt="" width="120" height="120" class="img-fluid rounded-circle" style="min-width: 36px; margin-left: 24px;">
+            </div>
+            <div class="col-11">
+                <textarea class="form-control" rows="3" id="post_text" maxlength="280"></textarea>
+                <hr/>
+                <div class="d-grid d-md-flex justify-content-md-end">
+                    <div class="pe-3 mt-2 d-none" id="post_success_msg">
+                        <div class="text-success">Post sent successfully
+                            <div class="spinner-grow text-success spinner-grow-sm" role="status">
+                                <span class="visually-hidden">Success</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-none" id="myProgress">
+                        <div id="myBar"></div>
+                        <div id="myLabel"></div>
+
+                    </div>
+
+
+
+
+
+
+
+                    <button class="btn btn-primary rounded-pill disabled" type="button" id="post_button">Post</button>
+                </div>
+            </div>
+        </div>
+    {% else %}
+    <div class="row" style="padding-top: 70px;">
+        <div class="col">
+            <div class="card border-dark mb-1">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="pb-3 pt-3">
+                                    <div class="text-center fs-5 fw-semibold text-primary">You must be logged in to post or comment.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+        <hr/>
+        <div class="d-block" id="all_posts" data-user-id="{{ request.user.id }}">
+        </div>
+    </div>
+
+    <div class="d-none" id="following_posts_view" data-user-id="{{ request.user.id }}">
+        <hr/>
+        <div class="row" style="padding-top: 35px;">
+        <div class="d-block" id="following_posts" data-user-id="{{ request.user.id }}">
+        </div>
+        </div>
+    </div>
+
+
+
+    <div class="pl-0 d-none" id="profile_view" data-user-id="{{ request.user.id }}" data-curr-id="0">
+        <!-- Modal for followers/ing -->
+        <div class="modal fade" id="followersBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="followersBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="followersBackdropLabel">Followers</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body list-group scroll-modal m-fill-area">
+                        <div class="list-group-item d-flex align-items-center">
+                            <img src="" alt="" width="38" height="38" class="rounded-circle flex-shrink-0 me-3"/>
+                            <div class="flex-fill">
+                                <div><a href="#" class="text-dark foll-font-m text-decoration-none fw-semibold name-m"></a></div>
+                                <div><a href="#" class="text-dark foll-font text-decoration-none username-m"></a></div>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary rounded-pill follow-m-button"></a>
+                            <a href="#" class="btn btn-outline-primary rounded-pill unfollow-m-button"></a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Modal for followers/ing -->
+
+
+
+        <div class="card border-dark">
+            <div class="rounded-top text-white d-flex flex-row w-100" style="background-color: #000; height:200px;">
+                <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                    <img src="{% static 'network/user.png' %}"
+                    alt="Placeholder image" class="img-fluid mt-5 mb-2 rounded-circle"
+                    style="width: 150px; z-index: 1; border: 2px solid #f8f9fa; border-radius: 50%;" id="image-profile">
+                    <button type="button" class="btn btn-outline-dark d-none" style="z-index: 1;" id="edit-profile-button">
+                        Edit profile
+                    </button>
+                    <button type="button" class="btn btn-outline-primary d-none" style="z-index: 1;" id="follow-profile-button">
+                        Follow
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary d-none" style="z-index: 1;" id="unfollow-profile-button">
+                        Unfollow
+                    </button>
+                </div>
+                <div class="ms-3" style="margin-top: 130px;">
+                    <h5 id="name-profile-text">Lorem Ipsum</h5>
+                    <p id="username-profile-text">Lorem Ipsum</p>
+                </div>
+            </div>
+            <div class="p-4 text-black" style="background-color: #f8f9fa;">
+                <div class="d-flex justify-content-end text-center py-1">
+                    <div>
+                        <p class="mb-1 h5" id="posts-profile-text">999</p>
+                        <p class="small text-muted mb-0">Posts</p>
+                    </div>
+                    <div class="px-3">
+                        <a class="mb-1 h5 text-decoration-none text-dark" href="#" id="followers-profile-text">999</a>
+                        <p class="small text-muted mb-0">Followers</p>
+                    </div>
+                    <div>
+                        <a class="mb-1 h5 text-decoration-none text-dark" href="#" id="following-profile-text">999</a>
+                        <p class="small text-muted mb-0">Following</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-4 text-black">
+                <p class="lead fw-normal mb-1">About</p>
+                <div class="p-4" style="background-color: #f8f9fa;">
+                    <p class="font-italic mb-0" id="bio-profile-text">Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-block" id="all_posts_profile" style="padding-top: 10px;" data-user-id="{{ request.user.id }}">
+
+        </div>
+    </div>
+
+
+
+    <div class="d-none" id="followers_view" data-user-id="{{ request.user.id }}">
+        <div class="row" style="padding-top: 60px;">
+            <div class="scroll-modal list-group px-3" id="all_followers-m" style="padding-top: 10px;" data-user-id="{{ request.user.id }}">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="d-none" id="saved_view" data-user-id="{{ request.user.id }}">
+        <div class="row" style="padding-top: 55px;">
+            <div class="d-block" id="all_posts_saved" style="padding-top: 10px;" data-user-id="{{ request.user.id }}">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="d-none" id="error_view" data-user-id="{{ request.user.id }}">
+        <div class="row text-center" style="padding-top: 60px;">
+
+            <div class="h1">Oops!</div>
+            <div class="h3">404 Not Found</div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="d-block" id="error_vw" style="padding-top: 5px;" data-user-id="{{ request.user.id }}">
+                    <div class="d-flex justify-content-center" style="max-height: 300px;">
+                        <img src="{% static "network/error.svg" %}" alt="" class="img-fluid">
+                    </div>
+
+                {% if error %}
+
+                {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="h5 fw-semibold">Sorry, an error has occured, Requested page not found!</div>
+            <div class="h6">Error:</div>
+        </div>
+        <div class="row text-center">
+            <div class="h6 font-monospace">"{% if error %}{{ error }}{% else %}404{% endif %}"</div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

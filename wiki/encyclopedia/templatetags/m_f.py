@@ -1,9 +1,9 @@
 # Markdown to HTML custom django filter
 from django import template
-import markdown
+import markdown2
 
 register = template.Library()
 
 @register.filter
 def md_to_html(text):
-    return markdown.markdown(text)
+    return markdown2.markdown(text)

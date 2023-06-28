@@ -1,4 +1,4 @@
-## Wiki (from CS50W course)
+## Wiki (from CS50W course | Updated)
 
 ### Description
 A website where users are able to create (using markdown), view and search for entries 
@@ -8,12 +8,25 @@ A website where users are able to create (using markdown), view and search for e
 - *Django*
 - *HTML*
 - *CSS*
+- *Docker*
 
 #### Configuring:
 - Install ```requirements.txt```.
 - Run ```python manage.py runserver 8080``` in ```/``` directory.
 - Visit ```http://127.0.0.1:8000/```.
 
+#### Docker (NEW):
+- Install docker and docker-compose.
+- Change database, user, password to your own in ```db.env``` and ```docker-compose.yml``` files.
+- Build containers using ```docker-compose build```.
+- Run containers using ```docker-compose up```, you can add ```-d``` flag to run in background.
+- When containers are running, commands for tests and migrations are already applied (```entry.sh```).
+- To enter bash use ```docker exec -it <container_name> bash```.
+- To enter django console use ```docker exec -it wiki python manage.py shell```.
+- Stop containers using ```docker-compose down```.
+
+#### Tests (NEW):
+- TO DO
 
 #### Implementations:
 - Entry Page:
@@ -45,10 +58,21 @@ A website where users are able to create (using markdown), view and search for e
 	- Once the entry is saved, the user will be redirected back to that entry’s page.
 
 - Random Page:
-	- Clicking “Random Page” in the sidebar will take user to a random encyclopedia entry.
+	- Clicking ```Random Page``` in the sidebar will take user to a random encyclopedia entry.
 
 - Markdown to HTML Conversion:
 	- On each entry’s page, any Markdown content in the entry file will be converted to HTML before being displayed to the user. I have used ```python-markdown2``` package and custom django filter to perform this conversion.
 
+- New:
+	- Created ```Entry``` model to store entries in database and added a migration file.
+	- ```util.py``` changed to work with ```PostgreSQL``` instead of filesystem.
+    - ```settings.py``` db changed to work with ```PostgreSQL```.
+    - Now default entries are added automatically if ```list_entries()``` is empty.
+    - Docker and docker-compose added.
+    - Tests added. (TO DO)
+    - ```entry.sh``` added.
+    - ```docker-compose.yml``` added for docker configuration.
+    - ```Dockerfile``` added for docker configuration.
+
 #### Contributing
-Pull requests are welcome. For major changes please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For major changes please open an issue first.
