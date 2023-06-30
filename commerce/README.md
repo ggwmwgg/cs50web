@@ -8,8 +8,10 @@ An eBay-like e-commerce auction site where users are able to post auction listin
 - *Django*
 - *SQL*
 - *HTML*
-- *CSS*
+- *CSS/Bootstrap5*
 - *Docker*
+- *Unit tests/Django tests*
+- *PostgreSQL*
 
 #### Configuring(PC):
 - Install ```requirements.txt```.
@@ -32,7 +34,15 @@ An eBay-like e-commerce auction site where users are able to post auction listin
 - Stop containers using ```docker-compose down```.
 
 #### Tests (NEW):
-- TO DO
+- ```ModelsIndexTestCase``` created:
+  - To test models (```User```, ```Category```, ```Listing```, ```Bid```, ```Comment```, ```Watchlist```).
+  - To test ```index``` view.
+- ```AuthTestCase``` created:
+  - To test ```login_view```, ```logout_view``` and ```register``` views.
+- ```ListingCategoriesTestCase``` created:
+  - To test ```create```, ```listing```, ```categories``` and ```category``` views.
+- ```ListingActionsTestCase``` created:
+  - To test ```close```, ```add_comment```, ```watchlist```, and ```add_bid``` views.
 
 #### Implementations:
 - Models:
@@ -71,11 +81,11 @@ An eBay-like e-commerce auction site where users are able to post auction listin
 - New:
   	- Standard database replaced with PostgreSQL.
     - Docker and docker-compose added.
-    - Tests added. (TO DO)
     - ```entry.sh``` added for migrations and tests.
     - ```db.env``` added for database configuration.
     - ```docker-compose.yml``` added for docker configuration.
     - ```Dockerfile``` added for docker configuration.
+    - ```tests.py``` added and run automatically after migrations.
 
 #### Contributing
 Pull requests are welcome. For major changes please open an issue first.

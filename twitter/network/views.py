@@ -102,7 +102,7 @@ def register(request):
             }, status=400)
         login(request, user)
         return JsonResponse({
-            "message": "koker"
+            "message": "Successfully registered."
         }, status=201)
     else:
         return HttpResponseRedirect(reverse("index"))
@@ -314,13 +314,13 @@ def post(request):
             if method == "like":
                 if action == "add":
                     post_data.likes.add(user_data)
-                    print(f"{user_data} liked {post_data}")
+                    # print(f"{user_data} liked {post_data}")
                     return JsonResponse({
                         "message": "Post liked successfully."
                     }, status=201)
                 elif action == "remove":
                     post_data.likes.remove(user_data)
-                    print(f"{user_data} unliked {post_data}")
+                    # print(f"{user_data} unliked {post_data}")
                     return JsonResponse({
                         "message": "Post unliked successfully."
                     }, status=201)
@@ -331,13 +331,13 @@ def post(request):
             elif method == "bookmark":
                 if action == "add":
                     user_data.saved_posts.add(post_data)
-                    print(f"{user_data} bookmarked {post_data}")
+                    # print(f"{user_data} bookmarked {post_data}")
                     return JsonResponse({
                         "message": "Post bookmarked successfully."
                     }, status=201)
                 elif action == "remove":
                     user_data.saved_posts.remove(post_data)
-                    print(f"{user_data} unbookmarked {post_data}")
+                    # print(f"{user_data} unbookmarked {post_data}")
                     return JsonResponse({
                         "message": "Post unbookmarked successfully."
                     }, status=201)
@@ -354,7 +354,7 @@ def post(request):
                     comment.user.set([user_data])
                     comment.post.set([post_data])
                     post_data.comments.add(comment)
-                    print(comment)
+                    # print(comment)
                     comment.save()
                     return JsonResponse({
                         "message": "Comment added successfully."
@@ -455,7 +455,7 @@ def user(request):
                 "follow": follower_list
             }, status=200)
         else:
-            return redirect(reverse("404") + "?error=invalid request")
+            return redirect(reverse("404") + "?error=Invalid request")
     elif request.method == "PUT":
         data = json.loads(request.body)
         method = data.get("method")

@@ -8,8 +8,10 @@ Website with front-end for an email client that makes (simulated) API calls to s
 - *Django*
 - *Javascript*
 - *HTML*
-- *CSS*
+- *CSS/Bootstrap5*
 - *Docker*
+- *Unit tests/Django tests*
+- *PostgreSQL*
 
 #### Configuring:
 - Install ```requirements.txt```.
@@ -32,7 +34,11 @@ Website with front-end for an email client that makes (simulated) API calls to s
 - Stop containers using ```docker-compose down```.
 
 #### Tests (NEW):
-- TO DO
+- ```ModelsIndexTestCase``` created:
+  - To test models (```User```, ```Email```).
+  - To test ```index```, ```compose```, ```mailbox``` and ```email``` views.
+- ```AuthViewsTestCase``` created:
+  - To test ```login_view```, ```logout_view``` and ```register``` views.
 
 #### Implementations:
 - Send mail:
@@ -78,6 +84,7 @@ Website with front-end for an email client that makes (simulated) API calls to s
     - ```db.env``` added for database configuration.
     - ```docker-compose.yml``` added for docker configuration.
     - ```Dockerfile``` added for docker configuration.
+    - ```tests.py``` added and run automatically after migrations.
 
 #### Contributing
 Pull requests are welcome. For major changes please open an issue first.

@@ -5,13 +5,11 @@ from django.db import models
 class User(AbstractUser):
     # Fixing warnings from initial migration
     id = models.BigAutoField(primary_key=True)
-    pass
 
 
 class Email(models.Model):
     # Fixing warnings from initial migration
     id = models.BigAutoField(primary_key=True)
-
     # Initial model
     user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="emails")
     sender = models.ForeignKey("User", on_delete=models.PROTECT, related_name="emails_sent")

@@ -15,28 +15,28 @@ You can see the technologies used inside the README.md of each project
   </ul>  
 </details>
 <details>
-  <summary>Week 3 (Django)</summary>
+  <summary>Week 3 (Django) (Updated)</summary>
   <blockquote>Create Wiki like site (create and watch entries, markdown)</blockquote>
   <ul>
 	<li><a href="https://github.com/ggwmwgg/cs50web/tree/main/wiki" target="_blank">Wiki</a></li>
   </ul>  
 </details>
 <details>
-  <summary>Week 4 (SQL, Models, and Migrations)</summary>
+  <summary>Week 4 (SQL, Models, and Migrations) (Updated)</summary>
   <blockquote>Create Ebay like site (bids, watchlist, listings)</blockquote>
   <ul>
 	<li><a href="https://github.com/ggwmwgg/cs50web/tree/main/commerce" target="_blank">Commerce</a></li>
   </ul>  
 </details>
 <details>
-  <summary>Week 5-6 (Javascript, UI)</summary>
+  <summary>Week 5-6 (Javascript, UI) (Updated)</summary>
   <blockquote>Create Mail website</blockquote>
   <ul>
 	<li><a href="https://github.com/ggwmwgg/cs50web/tree/main/mail" target="_blank">Mail</a></li>
   </ul>  
 </details>
 <details>
-  <summary>Week 7 (Testing, CI/CD)</summary>
+  <summary>Week 7 (Testing, CI/CD) (Updated)</summary>
   <blockquote>Create Twitter like website</blockquote>
   <ul>
 	<li><a href="https://github.com/ggwmwgg/cs50web/tree/main/twitter" target="_blank">Twitter</a></li>

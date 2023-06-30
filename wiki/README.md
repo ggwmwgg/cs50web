@@ -7,8 +7,11 @@ A website where users are able to create (using markdown), view and search for e
 - *Python*
 - *Django*
 - *HTML*
-- *CSS*
+- *CSS/Bootstrap5*
 - *Docker*
+- *Unit tests/Django tests*
+- *PostgreSQL*
+- *Markdown*
 
 #### Configuring:
 - Install ```requirements.txt```.
@@ -26,7 +29,11 @@ A website where users are able to create (using markdown), view and search for e
 - Stop containers using ```docker-compose down```.
 
 #### Tests (NEW):
-- TO DO
+- Tests were created to test ```util.py``` functions (```save_entry```, ```get_entry```, ```list_entries```).
+- To test ```models.py``` (```Entry```).
+- To test ```views.py``` (```index```, ```entry```, ```search```, ```add```, ```random```, ```edit```, ```save```).
+- To test ```NewPageForm```.
+- Tests can be run using ```python manage.py test```, by default, in docker tests are run after migrations.
 
 #### Implementations:
 - Entry Page:
@@ -63,16 +70,16 @@ A website where users are able to create (using markdown), view and search for e
 - Markdown to HTML Conversion:
 	- On each entry’s page, any Markdown content in the entry file will be converted to HTML before being displayed to the user. I have used ```python-markdown2``` package and custom django filter to perform this conversion.
 
-- New:
+- Updated(from initial version):
 	- Created ```Entry``` model to store entries in database and added a migration file.
 	- ```util.py``` changed to work with ```PostgreSQL``` instead of filesystem.
     - ```settings.py``` db changed to work with ```PostgreSQL```.
     - Now default entries are added automatically if ```list_entries()``` is empty.
     - Docker and docker-compose added.
-    - Tests added. (TO DO)
     - ```entry.sh``` added.
     - ```docker-compose.yml``` added for docker configuration.
     - ```Dockerfile``` added for docker configuration.
+    - ```tests.py``` added and run automatically after migrations.
 
 #### Contributing
 Pull requests are welcome. For major changes please open an issue first.

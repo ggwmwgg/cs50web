@@ -8,8 +8,10 @@ A twitter like website with client-side web API and Django server where users ar
 - *Django*
 - *Javascript*
 - *HTML*
-- *CSS*
+- *CSS/Bootstrap5*
 - *Docker*
+- *Unit tests/Django tests*
+- *PostgreSQL*
 
 #### Configuring:
 - Install ```requirements.txt```.
@@ -32,8 +34,18 @@ A twitter like website with client-side web API and Django server where users ar
 - Stop containers using ```docker-compose down```.
 
 #### Tests (NEW):
-- TO DO
-
+- ```ModelsAuthTestCase``` created: 
+  - To test models (```User```, ```Post```, ```Comment```) and relations between them.
+  - To test ```index```, ```login_view```, ```logout_view```, ```register``` and ```index``` views. 
+- ```CreatePostTestCase``` created:
+  - To test ```create``` view.
+- ```NotFoundTestCase``` created:
+  - To test ```404``` page.
+- ```PostsTestCase``` created:
+  - To test ```posts_wo_pg```, ```posts_all```, ```posts``` and ```post``` views.
+- ```ProfileUserTestCase``` created:
+  - To test ```profile_own```, ```profile_wo_pg```, ```profile```, ```followers``` and ```users``` views.
+  
 #### Implementations:
 - New Post:
     - Users who are signed in are able to write a new text-based post by filling in text into a ```text area``` and then clicking a button to submit the post.
@@ -56,15 +68,15 @@ A twitter like website with client-side web API and Django server where users ar
     - Users are able to ```like```/```unlike```, ```comment``` and add to ```bookmarks``` any posts.
 - Admin Panel:
     - Admin Panel view was also modified to make some fixes/corrections effectively.
-- New:
-  	- Standard database replaced with PostgreSQL.
+- Updated(from initial version):
+  	- Standard database (sqlite3) replaced with PostgreSQL.
     - Fixed migrations.
     - Docker and docker-compose added.
-    - Tests added. (TO DO)
     - ```entry.sh``` added for migrations and tests.
     - ```db.env``` added for database configuration.
     - ```docker-compose.yml``` added for docker configuration.
     - ```Dockerfile``` added for docker configuration.
+    - ```tests.py``` added and run automatically after migrations.
 
 #### Contributing
 Pull requests are welcome. For major changes please open an issue first.

@@ -1,7 +1,7 @@
 import random as r
 from django import forms
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from .util import get_entry, list_entries, save_entry, default_entries
 
@@ -25,7 +25,7 @@ def index(request):
 
 
 def entry(request, title):
-    get_content = get_entry(title)
+    get_content = get_entry(title.lower())
     if get_content is None:
         return render(request, "encyclopedia/404.html", {
             "title": title
@@ -39,16 +39,12 @@ def entry(request, title):
 
 def search(request):
     query = request.GET.get('q')
+    query_original = query
     query = query.lower()
     list_e = list_entries()
     list_lower = [x.lower() for x in list_e]
-
     if query in list_lower:
-        get_content = get_entry(query)
-        return render(request, "encyclopedia/entry.html", {
-            "title": query,
-            "content": get_content
-        })
+        return HttpResponseRedirect(reverse('entry', args=(query_original,)))
     else:
         results = []
         for i in list_e:
@@ -61,7 +57,7 @@ def search(request):
             })
         else:
             return render(request, "encyclopedia/search.html", {
-                "query": query,
+                "query": query_original,
                 "found": True,
                 "results": results
             })
@@ -105,7 +101,8 @@ def edit(request, title):
             title = form.cleaned_data["title"]
             content = form.cleaned_data["content"]
             save_entry(title, content)
-            return HttpResponseRedirect(reverse("save", args=(request,)))
+            # return HttpResponseRedirect(reverse("save", args=(request,)))
+            return redirect("save")  # Specify the URL path for the 'save' view
         else:
             return render(request, "encyclopedia/edit.html", {
                 "form": form
