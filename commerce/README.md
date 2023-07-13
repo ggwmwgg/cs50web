@@ -6,9 +6,8 @@ An eBay-like e-commerce auction site where users are able to post auction listin
 #### Technologies used:
 - *Python*
 - *Django*
-- *SQL*
-- *HTML*
-- *CSS/Bootstrap5*
+- *HTML5*
+- *CSS3/Bootstrap5*
 - *Docker*
 - *Unit tests/Django tests*
 - *PostgreSQL*
