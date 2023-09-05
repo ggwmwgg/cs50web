@@ -6,13 +6,12 @@ services:
     container_name: wiki
 
     volumes:
-      - .:/wiki
+      - wiki:/wiki
     ports:
       - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
-    entrypoint: /wiki/entry.sh
   db:
     image: postgres
     restart: always
@@ -30,3 +29,4 @@ services:
 
 volumes:
     database:
+    wiki:

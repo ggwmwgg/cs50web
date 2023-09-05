@@ -6,13 +6,13 @@ services:
     container_name: commerce
 
     volumes:
-      - .:/commerce
+      - commerce:/commerce
     ports:
       - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
-    entrypoint: /commerce/entry.sh
+
   db:
     image: postgres
     restart: always
@@ -30,3 +30,4 @@ services:
 
 volumes:
     database:
+    commerce:
